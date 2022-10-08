@@ -838,4 +838,3 @@ void Widget::on_sendButton_17_clicked()
     myTimer->start(600);
     connect(myTimer, SIGNAL(timeout()), this, SLOT(sendSerialData()));
 }
-
