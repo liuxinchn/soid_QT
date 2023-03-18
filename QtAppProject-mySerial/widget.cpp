@@ -1,7 +1,9 @@
 #include "widget.h"
 #include "ui_widget.h"
 
+// ------------------------------ Tools -----------------------------------
 
+//单个字符转16进制
 static char ConvertHexChar(char ch)
 {
   if((ch >= '0') && (ch <= '9'))
@@ -13,6 +15,7 @@ static char ConvertHexChar(char ch)
   else return (-1);
 }
 
+// 将字符串转为int数组，其中每个int，为字符串的相邻两位通过high*16+low所得
 void StringToHex(QString str, QByteArray &senddata)
 {
     int hexdata,lowhexdata;
@@ -88,7 +91,7 @@ quint16 crc16ForModbus(const QByteArray &data)
     quint16 crc16 = 0xFFFF;
     quint8 LEN=data.size();
 
-    while(LEN-->0)
+    while(LEN-- > 0)
     {
         crc16 = crc16Table[(crc16 ^data.at( i++ )) & 0xff] ^ (crc16 >> 8);
 
@@ -96,6 +99,8 @@ quint16 crc16ForModbus(const QByteArray &data)
 
     return crc16;
 }
+
+// ------------------------------ Class -----------------------------------
 
 Widget::Widget(QWidget *parent) :
     QWidget(parent),
@@ -135,7 +140,7 @@ Widget::~Widget()
     delete ui;
 }
 
-// 打开串口按钮-点击槽函数
+// 打开串口按钮-点击槽函数 <打开串口>
 void Widget::on_openPortButton_clicked()
 {
     if(ui->openPortButton->text() == tr("打开串口"))
@@ -161,7 +166,7 @@ void Widget::on_openPortButton_clicked()
     }
 }
 
-// 清除数据按钮-点击槽函数
+// 清除数据按钮-点击槽函数 <清空数据>
 void Widget::on_clearTextButton_clicked()
 {
     ui->recvTextEdit->clear();
@@ -173,21 +178,26 @@ void Widget::on_clearTextButton_clicked()
     ui->recvTextEdit_7->clear();
 }
 
-// 清除发送文本框按钮-点击槽函数
+// 清除发送文本框按钮-点击槽函数 <清除发送框>
 void Widget::on_clearSendButton_clicked()
 {
     ui->recvTextEdit_9->clear();
 
 }
 
-// 发送数据按钮-点击槽函数
-//void Widget::on_sendButton_clicked()
-//{
-//    QByteArray sendData = m_serial->hexStringToByteArray(ui->recvTextEdit->toPlainText());
-//    m_serial->sendData(sendData);
-//}
+// 发送广播地址-点击槽函数  <获取当前地址>
+void Widget::on_sendButton_8_clicked()
+{
+    QString sendData = "000310000001811B";
+    QByteArray bytes;
+    StringToHex(sendData,bytes);
+     m_serial->disconnect();
+    m_serial->sendData(bytes);
+    // 当下位机中有数据发送过来时就会响应这个槽函数
+    connect(m_serial, SIGNAL(readSignal()), this, SLOT(readaddressData()));
+}
 
-// 读取设备地址数据
+// 读取设备地址数据 - 设备地址赋值
 void Widget::readaddressData()
 {
     QByteArray originStr = m_serial->getReadBuf().toHex(0); // 保存接收文本框原本的数据
@@ -199,6 +209,37 @@ void Widget::readaddressData()
         m_serial->clearReadBuf(); // 读取完后，清空数据缓冲区
      }
 }
+
+//  开始读取数据--点击槽函数（直接获取7个字节数据） <读取数据>
+void Widget::on_readdata_Button_clicked()
+{
+     myTimer->disconnect();
+     myTimer->start(600);
+     connect(myTimer, SIGNAL(timeout()), this, SLOT(sendSerialData()));
+}
+
+void Widget::sendSerialData()
+{
+    myTimer->stop();
+    myTimer->disconnect();
+    QString sendData= ui->recvTextEdit_8->toPlainText();
+    sendData.insert(2, QString("0302000007"));
+    QByteArray bytes;
+    StringToHex(sendData,bytes);
+    auto temp =crc16ForModbus(bytes);
+
+    bytes[6]= temp%256;
+    bytes[7]= temp/256;
+
+    m_serial->disconnect();
+    // 当下位机中有数据发送过来时就会响应这个槽函数
+    connect(m_serial, SIGNAL(readSignal()), this, SLOT(readSerialData()));
+    m_serial->sendData(bytes);
+    connect(myTimer, SIGNAL(timeout()), this, SLOT(sendSerialADCData()));
+     myTimer->start(1000);
+
+}
+
 // 读取传感器设备数据
 void Widget::readSerialData()
 {
@@ -226,12 +267,14 @@ void Widget::readSerialData()
 
     }
 }
-void Widget::sendSerialData()
+
+//读取数据ADC数值
+void Widget::sendSerialADCData()
 {
-    myTimer->stop();
     myTimer->disconnect();
+    myTimer->stop();
     QString sendData= ui->recvTextEdit_8->toPlainText();
-    sendData.insert(2, QString("0302000007"));
+    sendData.insert(2, QString("031ff00004"));
     QByteArray bytes;
     StringToHex(sendData,bytes);
     auto temp =crc16ForModbus(bytes);
@@ -241,13 +284,11 @@ void Widget::sendSerialData()
 
     m_serial->disconnect();
     // 当下位机中有数据发送过来时就会响应这个槽函数
-    connect(m_serial, SIGNAL(readSignal()), this, SLOT(readSerialData()));
+    connect(m_serial, SIGNAL(readSignal()), this, SLOT(readSerialADCData()));
     m_serial->sendData(bytes);
-    connect(myTimer, SIGNAL(timeout()), this, SLOT(sendSerialADCData()));
-     myTimer->start(1000);
-
+    connect(myTimer, SIGNAL(timeout()), this, SLOT(sendSerialData()));
+    myTimer->start(1000);
 }
-
 
 // 读取数据ADC数值
 void Widget::readSerialADCData()
@@ -271,61 +312,17 @@ void Widget::readSerialADCData()
 
     }
 }
-//读取数据ADC数值
-void Widget::sendSerialADCData()
-{
-    myTimer->disconnect();
-    myTimer->stop();
-    QString sendData= ui->recvTextEdit_8->toPlainText();
-    sendData.insert(2, QString("031ff00004"));
-    QByteArray bytes;
-    StringToHex(sendData,bytes);
-    auto temp =crc16ForModbus(bytes);
 
-    bytes[6]= temp%256;
-    bytes[7]= temp/256;
-
-    m_serial->disconnect();
-    // 当下位机中有数据发送过来时就会响应这个槽函数
-    connect(m_serial, SIGNAL(readSignal()), this, SLOT(readSerialADCData()));
-    m_serial->sendData(bytes);
-    connect(myTimer, SIGNAL(timeout()), this, SLOT(sendSerialData()));
-    myTimer->start(1000);
-
-
-}
-
-
-
-// 发送广播地址-点击槽函数  获取设备地址
-void Widget::on_sendButton_8_clicked()
-{
-    QString sendData = "000310000001811B";
-    QByteArray bytes;
-    StringToHex(sendData,bytes);
-     m_serial->disconnect();
-    m_serial->sendData(bytes);
-    // 当下位机中有数据发送过来时就会响应这个槽函数
-    connect(m_serial, SIGNAL(readSignal()), this, SLOT(readaddressData()));
-}
-
-
-//  开始读取数据--点击槽函数（直接获取7个字节数据）
-void Widget::on_readdata_Button_clicked()
-{
-     myTimer->disconnect();
-     myTimer->start(600);
-     connect(myTimer, SIGNAL(timeout()), this, SLOT(sendSerialData()));
-}
-
-//关闭读取数据
+//关闭读取数据 <停止读取>
 void Widget::on_sendButton_7_clicked()
 {
     myTimer->stop();
     myTimer->disconnect();
 }
 
-//湿度零点校准
+// ------------------------------ 湿度 -----------------------------------
+
+//湿度零点校准 <湿度零点>
 void Widget::on_sendButton_2_clicked()
 {
     myTimer->stop();
@@ -344,7 +341,7 @@ void Widget::on_sendButton_2_clicked()
     connect(myTimer, SIGNAL(timeout()), this, SLOT(sendSerialData()));
 }
 
-//湿度顶点校准
+//湿度顶点校准 <湿度顶点>
 void Widget::on_sendButton_3_clicked()
 {
     myTimer->stop();
@@ -364,14 +361,14 @@ void Widget::on_sendButton_3_clicked()
 
 }
 
-//电导率高溶液校准8000
-void Widget::on_sendButton_4_clicked()
+// ------------------------------ 电导率 -----------------------------------
+
+//电导率零点校准 <电导率零点>
+void Widget::on_sendButton_12_clicked()
 {
     myTimer->stop();
     QString sendData= ui->recvTextEdit_8->toPlainText();
-
-    sendData.insert(2, QString("0600048000"));
-
+    sendData.insert(2, QString("0600060001"));
     QByteArray bytes;
     StringToHex(sendData,bytes);
     auto temp =crc16ForModbus(bytes);
@@ -385,7 +382,7 @@ void Widget::on_sendButton_4_clicked()
     connect(myTimer, SIGNAL(timeout()), this, SLOT(sendSerialData()));
 }
 
-//电导率低溶液校准500
+//电导率低溶液校准500 <电导率500>
 void Widget::on_sendButton_5_clicked()
 {
     myTimer->stop();
@@ -403,51 +400,9 @@ void Widget::on_sendButton_5_clicked()
     myTimer->disconnect();
     myTimer->start(600);
     connect(myTimer, SIGNAL(timeout()), this, SLOT(sendSerialData()));
-
 }
 
-//电导率零点校准
-void Widget::on_sendButton_12_clicked()
-{
-    myTimer->stop();
-    QString sendData= ui->recvTextEdit_8->toPlainText();
-    sendData.insert(2, QString("0600060001"));
-    QByteArray bytes;
-    StringToHex(sendData,bytes);
-    auto temp =crc16ForModbus(bytes);
-
-    bytes[6]= temp%256;
-    bytes[7]= temp/256;
-
-    m_serial->sendData(bytes);
-    myTimer->disconnect();
-    myTimer->start(600);
-    connect(myTimer, SIGNAL(timeout()), this, SLOT(sendSerialData()));
-
-}
-
-
-//电导率中2等溶液3000
-void Widget::on_sendButton_13_clicked()
-{
-    myTimer->stop();
-    QString sendData= ui->recvTextEdit_8->toPlainText();
-    sendData.insert(2, QString("0600073000"));
-
-    QByteArray bytes;
-    StringToHex(sendData,bytes);
-    auto temp =crc16ForModbus(bytes);
-
-    bytes[6]= temp%256;
-    bytes[7]= temp/256;
-
-    m_serial->sendData(bytes);
-    myTimer->disconnect();
-    myTimer->start(600);
-    connect(myTimer, SIGNAL(timeout()), this, SLOT(sendSerialData()));
-}
-
-//电导率中1等溶液1500
+//电导率中1等溶液1500 <电导率1500>
 void Widget::on_sendButton_14_clicked()
 {
     myTimer->stop();
@@ -468,7 +423,50 @@ void Widget::on_sendButton_14_clicked()
     connect(myTimer, SIGNAL(timeout()), this, SLOT(sendSerialData()));
 }
 
-//PH高溶液校准
+//电导率中2等溶液3000 <电导率3000>
+void Widget::on_sendButton_13_clicked()
+{
+    myTimer->stop();
+    QString sendData= ui->recvTextEdit_8->toPlainText();
+    sendData.insert(2, QString("0600073000"));
+
+    QByteArray bytes;
+    StringToHex(sendData,bytes);
+    auto temp =crc16ForModbus(bytes);
+
+    bytes[6]= temp%256;
+    bytes[7]= temp/256;
+
+    m_serial->sendData(bytes);
+    myTimer->disconnect();
+    myTimer->start(600);
+    connect(myTimer, SIGNAL(timeout()), this, SLOT(sendSerialData()));
+}
+
+//电导率高溶液校准8000 <电导率8000>
+void Widget::on_sendButton_4_clicked()
+{
+    myTimer->stop();
+    QString sendData= ui->recvTextEdit_8->toPlainText();
+
+    sendData.insert(2, QString("0600048000"));
+
+    QByteArray bytes;
+    StringToHex(sendData,bytes);
+    auto temp =crc16ForModbus(bytes);
+
+    bytes[6]= temp%256;
+    bytes[7]= temp/256;
+
+    m_serial->sendData(bytes);
+    myTimer->disconnect();
+    myTimer->start(600);
+    connect(myTimer, SIGNAL(timeout()), this, SLOT(sendSerialData()));
+}
+
+// ------------------------------ PH -----------------------------------
+
+//PH高溶液校准 <PH碱性9.18>
 void Widget::on_sendButton_6_clicked()
 {
     myTimer->stop();
@@ -490,27 +488,7 @@ void Widget::on_sendButton_6_clicked()
     connect(myTimer, SIGNAL(timeout()), this, SLOT(sendSerialData()));
 }
 
-//PH低溶液校准
-void Widget::on_sendButton_10_clicked()
-{
-    myTimer->stop();
-    QString sendData= ui->recvTextEdit_8->toPlainText();
-
-        sendData.insert(2, QString("06000a0400"));
-
-    QByteArray bytes;
-    StringToHex(sendData,bytes);
-    auto temp =crc16ForModbus(bytes);
-
-    bytes[6]= temp%256;
-    bytes[7]= temp/256;
-
-    m_serial->sendData(bytes);
-    myTimer->disconnect();
-    myTimer->start(600);
-    connect(myTimer, SIGNAL(timeout()), this, SLOT(sendSerialData()));
-}
-//PH中性溶液校准
+//PH中性溶液校准 <PH中性6.86>
 void Widget::on_sendButton_11_clicked()
 {
     myTimer->stop();
@@ -531,6 +509,26 @@ void Widget::on_sendButton_11_clicked()
     connect(myTimer, SIGNAL(timeout()), this, SLOT(sendSerialData()));
 }
 
+//PH低溶液校准 <PH酸性4.00>
+void Widget::on_sendButton_10_clicked()
+{
+    myTimer->stop();
+    QString sendData= ui->recvTextEdit_8->toPlainText();
+
+        sendData.insert(2, QString("06000a0400"));
+
+    QByteArray bytes;
+    StringToHex(sendData,bytes);
+    auto temp =crc16ForModbus(bytes);
+
+    bytes[6]= temp%256;
+    bytes[7]= temp/256;
+
+    m_serial->sendData(bytes);
+    myTimer->disconnect();
+    myTimer->start(600);
+    connect(myTimer, SIGNAL(timeout()), this, SLOT(sendSerialData()));
+}
 
 
 //传感器选择
@@ -569,15 +567,15 @@ void Widget::on_sendButton_9_clicked()
 
      QString sendData1= ui->recvTextEdit_8->toPlainText();
      if(sendData<15)
-         {
+     {
          sendData1.insert(2, QString("061002000"));
          sendData1.insert(11, QByteArray::number(sendData, 16).toUpper());
-         }
+     }
      else
-        {
+     {
          sendData1.insert(2, QString("06100200"));
          sendData1.insert(10, QByteArray::number(sendData, 16).toUpper());
-        }
+     }
 
      QByteArray bytes;
      StringToHex(sendData1,bytes);
@@ -590,40 +588,11 @@ void Widget::on_sendButton_9_clicked()
      myTimer->disconnect();
      myTimer->start(600);
      connect(myTimer, SIGNAL(timeout()), this, SLOT(sendSerialData()));
-
 }
 
-// 读取传感器设备数据
-void Widget::readADsetData()
-{
-    bool ok;
-    QByteArray originStr = m_serial->getReadBuf().toHex(0);// 读取串口数据
-    if(originStr!="")
-    {
-    float data_500=originStr.mid(6,4).toInt(&ok,16);
-    float data_1500=originStr.mid(10,4).toInt(&ok,16);
-    auto data_3000=originStr.mid(14,4).toInt(&ok,16);
-    float data_8000=originStr.mid(18,4).toInt(&ok,16);
-    auto data_918=originStr.mid(22,4).toInt(&ok,16);
-    auto data_686=originStr.mid(26,4).toInt(&ok,16);
-    auto data_400=originStr.mid(30,4).toInt(&ok,16);
-    ui->recvTextEdit_13->clear();    ui->recvTextEdit_13->setText(QString::number(data_500));
-    ui->recvTextEdit_14->clear();  ui->recvTextEdit_14->setText(QString::number(data_1500));
-    ui->recvTextEdit_17->clear();  ui->recvTextEdit_17->setText(QString::number(data_3000));
-    ui->recvTextEdit_9->clear();  ui->recvTextEdit_9->setText(QString::number(data_8000));
-    ui->recvTextEdit_10->clear();  ui->recvTextEdit_10->setText(QString::number(data_918));
-    ui->recvTextEdit_12->clear();  ui->recvTextEdit_12->setText(QString::number(data_686));
-    ui->recvTextEdit_11->clear();  ui->recvTextEdit_11->setText(QString::number(data_400));
+// ------------------------------ 一键获取当前设置值 -----------------------------------
 
-    m_serial->clearReadBuf(); // 读取完后，清空数据缓冲区
-    m_serial->disconnect();
-
-    myTimer->disconnect();
-    myTimer->start(600);
-    connect(myTimer, SIGNAL(timeout()), this, SLOT(sendSerialData()));
-    }
-}
-//读取AD设置值
+//读取AD设置值 <一键获取当前设置值>
 void Widget::on_sendButton_18_clicked()
 {
     myTimer->stop();
@@ -642,7 +611,39 @@ void Widget::on_sendButton_18_clicked()
     m_serial->sendData(bytes);
 }
 
-//设置500的AD值
+// 读取传感器设备数据 - 电导率 和 PH 的数据
+void Widget::readADsetData()
+{
+    bool ok;
+    QByteArray originStr = m_serial->getReadBuf().toHex(0);// 读取串口数据
+    if(originStr!="")
+    {
+        float data_500=originStr.mid(6,4).toInt(&ok,16);
+        float data_1500=originStr.mid(10,4).toInt(&ok,16);
+        auto data_3000=originStr.mid(14,4).toInt(&ok,16);
+        float data_8000=originStr.mid(18,4).toInt(&ok,16);
+        auto data_918=originStr.mid(22,4).toInt(&ok,16);
+        auto data_686=originStr.mid(26,4).toInt(&ok,16);
+        auto data_400=originStr.mid(30,4).toInt(&ok,16);
+        ui->recvTextEdit_13->clear();    ui->recvTextEdit_13->setText(QString::number(data_500));
+        ui->recvTextEdit_14->clear();  ui->recvTextEdit_14->setText(QString::number(data_1500));
+        ui->recvTextEdit_17->clear();  ui->recvTextEdit_17->setText(QString::number(data_3000));
+        ui->recvTextEdit_9->clear();  ui->recvTextEdit_9->setText(QString::number(data_8000));
+        ui->recvTextEdit_10->clear();  ui->recvTextEdit_10->setText(QString::number(data_918));
+        ui->recvTextEdit_12->clear();  ui->recvTextEdit_12->setText(QString::number(data_686));
+        ui->recvTextEdit_11->clear();  ui->recvTextEdit_11->setText(QString::number(data_400));
+
+        m_serial->clearReadBuf(); // 读取完后，清空数据缓冲区
+        m_serial->disconnect();
+
+        myTimer->disconnect();
+        myTimer->start(600);
+        connect(myTimer, SIGNAL(timeout()), this, SLOT(sendSerialData()));
+    }
+}
+
+
+// 电导率500 AD SET
 void Widget::on_pushButton_clicked()
 {
     myTimer->stop();
@@ -670,8 +671,7 @@ void Widget::on_pushButton_clicked()
     connect(myTimer, SIGNAL(timeout()), this, SLOT(sendSerialData()));
 }
 
-//1500
-
+// 电导率1500 AD SET
 void Widget::on_pushButton_2_clicked()
 {
     myTimer->stop();
@@ -699,7 +699,7 @@ void Widget::on_pushButton_2_clicked()
     connect(myTimer, SIGNAL(timeout()), this, SLOT(sendSerialData()));
 }
 
-//3000
+// 电导率3000 AD SET
 void Widget::on_pushButton_3_clicked()
 {
     myTimer->stop();
@@ -727,7 +727,7 @@ void Widget::on_pushButton_3_clicked()
     connect(myTimer, SIGNAL(timeout()), this, SLOT(sendSerialData()));
 }
 
-//8000
+// 电导率8000 AD SET
 void Widget::on_pushButton_4_clicked()
 {
     myTimer->stop();
@@ -755,7 +755,7 @@ void Widget::on_pushButton_4_clicked()
     connect(myTimer, SIGNAL(timeout()), this, SLOT(sendSerialData()));
 }
 
-//918
+// PH碱性918 AD SET
 void Widget::on_sendButton_15_clicked()
 {
     myTimer->stop();
@@ -783,7 +783,7 @@ void Widget::on_sendButton_15_clicked()
     connect(myTimer, SIGNAL(timeout()), this, SLOT(sendSerialData()));
 }
 
-
+// PH中性686 AD SET
 void Widget::on_sendButton_16_clicked()
 {
     myTimer->stop();
@@ -811,7 +811,7 @@ void Widget::on_sendButton_16_clicked()
     connect(myTimer, SIGNAL(timeout()), this, SLOT(sendSerialData()));
 }
 
-
+// PH酸性400 AD SET
 void Widget::on_sendButton_17_clicked()
 {
     myTimer->stop();
@@ -838,3 +838,50 @@ void Widget::on_sendButton_17_clicked()
     myTimer->start(600);
     connect(myTimer, SIGNAL(timeout()), this, SLOT(sendSerialData()));
 }
+
+// ------------------------------ 修改地址 -----------------------------------
+
+// 地址SET
+void Widget::on_sendButton_19_clicked()
+{
+    myTimer->stop();
+    QString sendData= ui->recvTextEdit_8->toPlainText();
+    QString sendData1 = ui->recvTextEdit_18->toPlainText();
+    sendData.insert(2, QString("06100000"));
+    sendData.insert(10, sendData1);
+    QByteArray bytes;
+    StringToHex(sendData,bytes);
+    auto temp =crc16ForModbus(bytes);
+
+    bytes[6]= temp%256;
+    bytes[7]= temp/256;
+
+    m_serial->sendData(bytes);
+    myTimer->disconnect();
+    ui->recvTextEdit_8->setText(ui->recvTextEdit_18->toPlainText());
+    myTimer->start(600);
+    connect(myTimer, SIGNAL(timeout()), this, SLOT(sendSerialData()));
+}
+
+// 默认地址SET
+void Widget::on_sendButton_20_clicked()
+{
+    myTimer->stop();
+    QString sendData= ui->recvTextEdit_8->toPlainText();
+    QString sendData1 = QString("01");
+    sendData.insert(2, QString("06100000"));
+    sendData.insert(10, sendData1);
+    QByteArray bytes;
+    StringToHex(sendData,bytes);
+    auto temp =crc16ForModbus(bytes);
+
+    bytes[6]= temp%256;
+    bytes[7]= temp/256;
+
+    m_serial->sendData(bytes);
+    myTimer->disconnect();
+    ui->recvTextEdit_8->setText("01");
+    myTimer->start(600);
+    connect(myTimer, SIGNAL(timeout()), this, SLOT(sendSerialData()));
+}
+

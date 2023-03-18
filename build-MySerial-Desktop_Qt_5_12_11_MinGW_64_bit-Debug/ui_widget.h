@@ -112,6 +112,12 @@ public:
     QLabel *label_13;
     QTextEdit *recvTextEdit_20;
     QLabel *label_16;
+    QWidget *gridLayoutWidget_3;
+    QGridLayout *dataread_3;
+    QTextEdit *recvTextEdit_18;
+    QLabel *label_21;
+    QPushButton *sendButton_19;
+    QPushButton *sendButton_20;
     QButtonGroup *buttonGroup;
 
     void setupUi(QWidget *Widget)
@@ -572,6 +578,35 @@ public:
 
         dataread_2->addWidget(label_16, 1, 0, 1, 1);
 
+        gridLayoutWidget_3 = new QWidget(Widget);
+        gridLayoutWidget_3->setObjectName(QString::fromUtf8("gridLayoutWidget_3"));
+        gridLayoutWidget_3->setGeometry(QRect(390, 410, 261, 56));
+        dataread_3 = new QGridLayout(gridLayoutWidget_3);
+        dataread_3->setSpacing(6);
+        dataread_3->setContentsMargins(11, 11, 11, 11);
+        dataread_3->setObjectName(QString::fromUtf8("dataread_3"));
+        dataread_3->setContentsMargins(0, 0, 0, 0);
+        recvTextEdit_18 = new QTextEdit(gridLayoutWidget_3);
+        recvTextEdit_18->setObjectName(QString::fromUtf8("recvTextEdit_18"));
+        recvTextEdit_18->setMaximumSize(QSize(16777215, 25));
+
+        dataread_3->addWidget(recvTextEdit_18, 0, 1, 1, 1);
+
+        label_21 = new QLabel(gridLayoutWidget_3);
+        label_21->setObjectName(QString::fromUtf8("label_21"));
+
+        dataread_3->addWidget(label_21, 0, 0, 1, 1);
+
+        sendButton_19 = new QPushButton(gridLayoutWidget_3);
+        sendButton_19->setObjectName(QString::fromUtf8("sendButton_19"));
+
+        dataread_3->addWidget(sendButton_19, 0, 2, 1, 1);
+
+        sendButton_20 = new QPushButton(gridLayoutWidget_3);
+        sendButton_20->setObjectName(QString::fromUtf8("sendButton_20"));
+
+        dataread_3->addWidget(sendButton_20, 1, 0, 1, 3);
+
 
         retranslateUi(Widget);
 
@@ -640,6 +675,9 @@ public:
         label_11->setText(QApplication::translate("Widget", "\345\234\237\345\243\244\347\224\265\345\257\274\347\216\207ADC", nullptr));
         label_13->setText(QApplication::translate("Widget", "\345\234\237\345\243\244PH ADC", nullptr));
         label_16->setText(QApplication::translate("Widget", "\345\234\237\345\243\244\346\270\251\345\272\246ADC", nullptr));
+        label_21->setText(QApplication::translate("Widget", "\345\234\260\345\235\200", nullptr));
+        sendButton_19->setText(QApplication::translate("Widget", "SET", nullptr));
+        sendButton_20->setText(QApplication::translate("Widget", "\346\201\242\345\244\215\344\270\272\351\273\230\350\256\244\345\234\260\345\235\200", nullptr));
     } // retranslateUi
 
 };
