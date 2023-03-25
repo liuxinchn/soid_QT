@@ -54,38 +54,51 @@ public:
     QCheckBox *checkBox_7;
     QWidget *formLayoutWidget;
     QGridLayout *gridLayout;
-    QPushButton *sendButton_17;
-    QLabel *label_14;
     QPushButton *sendButton_16;
-    QLabel *label_18;
-    QPushButton *sendButton_14;
-    QTextEdit *recvTextEdit_17;
-    QPushButton *pushButton_3;
-    QPushButton *sendButton_5;
-    QTextEdit *recvTextEdit_12;
-    QPushButton *sendButton_4;
-    QPushButton *sendButton_10;
-    QPushButton *sendButton_15;
-    QTextEdit *recvTextEdit_9;
-    QPushButton *pushButton_4;
-    QTextEdit *recvTextEdit_14;
-    QPushButton *sendButton_13;
-    QLabel *label_10;
-    QPushButton *sendButton_11;
-    QPushButton *pushButton_2;
-    QLabel *label_15;
-    QPushButton *sendButton_2;
-    QLabel *label_17;
-    QTextEdit *recvTextEdit_10;
-    QTextEdit *recvTextEdit_11;
-    QLabel *label_20;
-    QPushButton *pushButton;
-    QPushButton *sendButton_6;
     QPushButton *sendButton_12;
-    QPushButton *sendButton_3;
-    QTextEdit *recvTextEdit_13;
+    QPushButton *sendButton_15;
+    QPushButton *sendButton_4;
+    QPushButton *sendButton_2;
+    QTextEdit *recvTextEdit_24;
+    QLabel *label_25;
+    QTextEdit *recvTextEdit_23;
+    QLabel *label_17;
+    QTextEdit *recvTextEdit_12;
+    QTextEdit *recvTextEdit_21;
     QLabel *label_19;
+    QTextEdit *recvTextEdit_9;
+    QLabel *label_14;
+    QPushButton *sendButton_10;
+    QTextEdit *recvTextEdit_17;
+    QTextEdit *recvTextEdit_10;
     QPushButton *sendButton_18;
+    QTextEdit *recvTextEdit_14;
+    QPushButton *sendButton_14;
+    QTextEdit *recvTextEdit_22;
+    QLabel *label_22;
+    QPushButton *sendButton_17;
+    QTextEdit *recvTextEdit_11;
+    QPushButton *sendButton_5;
+    QLabel *label_15;
+    QPushButton *sendButton_6;
+    QPushButton *sendButton_11;
+    QPushButton *sendButton_21;
+    QLabel *label_24;
+    QPushButton *pushButton;
+    QPushButton *pushButton_3;
+    QLabel *label_23;
+    QTextEdit *recvTextEdit_13;
+    QLabel *label_20;
+    QPushButton *sendButton_13;
+    QPushButton *pushButton_2;
+    QLabel *label_18;
+    QPushButton *sendButton_23;
+    QLabel *label_10;
+    QPushButton *sendButton_22;
+    QPushButton *sendButton_3;
+    QPushButton *pushButton_4;
+    QLabel *label_26;
+    QTextEdit *recvTextEdit_25;
     QWidget *gridLayoutWidget;
     QGridLayout *dataread;
     QTextEdit *recvTextEdit_5;
@@ -124,7 +137,7 @@ public:
     {
         if (Widget->objectName().isEmpty())
             Widget->setObjectName(QString::fromUtf8("Widget"));
-        Widget->resize(881, 466);
+        Widget->resize(930, 598);
         layoutWidget = new QWidget(Widget);
         layoutWidget->setObjectName(QString::fromUtf8("layoutWidget"));
         layoutWidget->setGeometry(QRect(40, 40, 77, 135));
@@ -252,183 +265,253 @@ public:
 
         formLayoutWidget = new QWidget(Widget);
         formLayoutWidget->setObjectName(QString::fromUtf8("formLayoutWidget"));
-        formLayoutWidget->setGeometry(QRect(390, 40, 261, 358));
+        formLayoutWidget->setGeometry(QRect(390, 40, 261, 542));
         gridLayout = new QGridLayout(formLayoutWidget);
         gridLayout->setSpacing(6);
         gridLayout->setContentsMargins(11, 11, 11, 11);
         gridLayout->setObjectName(QString::fromUtf8("gridLayout"));
         gridLayout->setContentsMargins(0, 0, 0, 0);
-        sendButton_17 = new QPushButton(formLayoutWidget);
-        sendButton_17->setObjectName(QString::fromUtf8("sendButton_17"));
-
-        gridLayout->addWidget(sendButton_17, 11, 2, 1, 1);
-
-        label_14 = new QLabel(formLayoutWidget);
-        label_14->setObjectName(QString::fromUtf8("label_14"));
-
-        gridLayout->addWidget(label_14, 5, 0, 1, 1);
-
         sendButton_16 = new QPushButton(formLayoutWidget);
         sendButton_16->setObjectName(QString::fromUtf8("sendButton_16"));
 
-        gridLayout->addWidget(sendButton_16, 10, 2, 1, 1);
+        gridLayout->addWidget(sendButton_16, 17, 2, 1, 1);
 
-        label_18 = new QLabel(formLayoutWidget);
-        label_18->setObjectName(QString::fromUtf8("label_18"));
+        sendButton_12 = new QPushButton(formLayoutWidget);
+        buttonGroup = new QButtonGroup(Widget);
+        buttonGroup->setObjectName(QString::fromUtf8("buttonGroup"));
+        buttonGroup->addButton(sendButton_12);
+        sendButton_12->setObjectName(QString::fromUtf8("sendButton_12"));
 
-        gridLayout->addWidget(label_18, 9, 0, 1, 1);
-
-        sendButton_14 = new QPushButton(formLayoutWidget);
-        sendButton_14->setObjectName(QString::fromUtf8("sendButton_14"));
-
-        gridLayout->addWidget(sendButton_14, 1, 2, 1, 1);
-
-        recvTextEdit_17 = new QTextEdit(formLayoutWidget);
-        recvTextEdit_17->setObjectName(QString::fromUtf8("recvTextEdit_17"));
-        recvTextEdit_17->setMaximumSize(QSize(16777215, 25));
-
-        gridLayout->addWidget(recvTextEdit_17, 6, 1, 1, 1);
-
-        pushButton_3 = new QPushButton(formLayoutWidget);
-        pushButton_3->setObjectName(QString::fromUtf8("pushButton_3"));
-
-        gridLayout->addWidget(pushButton_3, 6, 2, 1, 1);
-
-        sendButton_5 = new QPushButton(formLayoutWidget);
-        sendButton_5->setObjectName(QString::fromUtf8("sendButton_5"));
-
-        gridLayout->addWidget(sendButton_5, 1, 1, 1, 1);
-
-        recvTextEdit_12 = new QTextEdit(formLayoutWidget);
-        recvTextEdit_12->setObjectName(QString::fromUtf8("recvTextEdit_12"));
-        recvTextEdit_12->setMaximumSize(QSize(16777215, 25));
-
-        gridLayout->addWidget(recvTextEdit_12, 10, 1, 1, 1);
-
-        sendButton_4 = new QPushButton(formLayoutWidget);
-        sendButton_4->setObjectName(QString::fromUtf8("sendButton_4"));
-
-        gridLayout->addWidget(sendButton_4, 2, 1, 1, 1);
-
-        sendButton_10 = new QPushButton(formLayoutWidget);
-        sendButton_10->setObjectName(QString::fromUtf8("sendButton_10"));
-
-        gridLayout->addWidget(sendButton_10, 8, 2, 1, 1);
+        gridLayout->addWidget(sendButton_12, 8, 0, 1, 1);
 
         sendButton_15 = new QPushButton(formLayoutWidget);
         sendButton_15->setObjectName(QString::fromUtf8("sendButton_15"));
 
-        gridLayout->addWidget(sendButton_15, 9, 2, 1, 1);
+        gridLayout->addWidget(sendButton_15, 16, 2, 1, 1);
 
-        recvTextEdit_9 = new QTextEdit(formLayoutWidget);
-        recvTextEdit_9->setObjectName(QString::fromUtf8("recvTextEdit_9"));
-        recvTextEdit_9->setMaximumSize(QSize(16777215, 25));
+        sendButton_4 = new QPushButton(formLayoutWidget);
+        sendButton_4->setObjectName(QString::fromUtf8("sendButton_4"));
 
-        gridLayout->addWidget(recvTextEdit_9, 7, 1, 1, 1);
-
-        pushButton_4 = new QPushButton(formLayoutWidget);
-        pushButton_4->setObjectName(QString::fromUtf8("pushButton_4"));
-
-        gridLayout->addWidget(pushButton_4, 7, 2, 1, 1);
-
-        recvTextEdit_14 = new QTextEdit(formLayoutWidget);
-        recvTextEdit_14->setObjectName(QString::fromUtf8("recvTextEdit_14"));
-        recvTextEdit_14->setMaximumSize(QSize(16777215, 25));
-
-        gridLayout->addWidget(recvTextEdit_14, 5, 1, 1, 1);
-
-        sendButton_13 = new QPushButton(formLayoutWidget);
-        sendButton_13->setObjectName(QString::fromUtf8("sendButton_13"));
-
-        gridLayout->addWidget(sendButton_13, 2, 0, 1, 1);
-
-        label_10 = new QLabel(formLayoutWidget);
-        label_10->setObjectName(QString::fromUtf8("label_10"));
-
-        gridLayout->addWidget(label_10, 4, 0, 1, 1);
-
-        sendButton_11 = new QPushButton(formLayoutWidget);
-        sendButton_11->setObjectName(QString::fromUtf8("sendButton_11"));
-
-        gridLayout->addWidget(sendButton_11, 8, 1, 1, 1);
-
-        pushButton_2 = new QPushButton(formLayoutWidget);
-        pushButton_2->setObjectName(QString::fromUtf8("pushButton_2"));
-
-        gridLayout->addWidget(pushButton_2, 5, 2, 1, 1);
-
-        label_15 = new QLabel(formLayoutWidget);
-        label_15->setObjectName(QString::fromUtf8("label_15"));
-
-        gridLayout->addWidget(label_15, 6, 0, 1, 1);
+        gridLayout->addWidget(sendButton_4, 9, 1, 1, 1);
 
         sendButton_2 = new QPushButton(formLayoutWidget);
-        buttonGroup = new QButtonGroup(Widget);
-        buttonGroup->setObjectName(QString::fromUtf8("buttonGroup"));
         buttonGroup->addButton(sendButton_2);
         sendButton_2->setObjectName(QString::fromUtf8("sendButton_2"));
 
         gridLayout->addWidget(sendButton_2, 0, 0, 1, 1);
 
+        recvTextEdit_24 = new QTextEdit(formLayoutWidget);
+        recvTextEdit_24->setObjectName(QString::fromUtf8("recvTextEdit_24"));
+        recvTextEdit_24->setMaximumSize(QSize(16777215, 25));
+
+        gridLayout->addWidget(recvTextEdit_24, 6, 1, 1, 1);
+
+        label_25 = new QLabel(formLayoutWidget);
+        label_25->setObjectName(QString::fromUtf8("label_25"));
+
+        gridLayout->addWidget(label_25, 6, 0, 1, 1);
+
+        recvTextEdit_23 = new QTextEdit(formLayoutWidget);
+        recvTextEdit_23->setObjectName(QString::fromUtf8("recvTextEdit_23"));
+        recvTextEdit_23->setMaximumSize(QSize(16777215, 25));
+
+        gridLayout->addWidget(recvTextEdit_23, 5, 1, 1, 1);
+
         label_17 = new QLabel(formLayoutWidget);
         label_17->setObjectName(QString::fromUtf8("label_17"));
 
-        gridLayout->addWidget(label_17, 7, 0, 1, 1);
+        gridLayout->addWidget(label_17, 14, 0, 1, 1);
+
+        recvTextEdit_12 = new QTextEdit(formLayoutWidget);
+        recvTextEdit_12->setObjectName(QString::fromUtf8("recvTextEdit_12"));
+        recvTextEdit_12->setMaximumSize(QSize(16777215, 25));
+
+        gridLayout->addWidget(recvTextEdit_12, 17, 1, 1, 1);
+
+        recvTextEdit_21 = new QTextEdit(formLayoutWidget);
+        recvTextEdit_21->setObjectName(QString::fromUtf8("recvTextEdit_21"));
+        recvTextEdit_21->setMaximumSize(QSize(16777215, 25));
+
+        gridLayout->addWidget(recvTextEdit_21, 3, 1, 1, 1);
+
+        label_19 = new QLabel(formLayoutWidget);
+        label_19->setObjectName(QString::fromUtf8("label_19"));
+
+        gridLayout->addWidget(label_19, 17, 0, 1, 1);
+
+        recvTextEdit_9 = new QTextEdit(formLayoutWidget);
+        recvTextEdit_9->setObjectName(QString::fromUtf8("recvTextEdit_9"));
+        recvTextEdit_9->setMaximumSize(QSize(16777215, 25));
+
+        gridLayout->addWidget(recvTextEdit_9, 14, 1, 1, 1);
+
+        label_14 = new QLabel(formLayoutWidget);
+        label_14->setObjectName(QString::fromUtf8("label_14"));
+
+        gridLayout->addWidget(label_14, 12, 0, 1, 1);
+
+        sendButton_10 = new QPushButton(formLayoutWidget);
+        sendButton_10->setObjectName(QString::fromUtf8("sendButton_10"));
+
+        gridLayout->addWidget(sendButton_10, 15, 2, 1, 1);
+
+        recvTextEdit_17 = new QTextEdit(formLayoutWidget);
+        recvTextEdit_17->setObjectName(QString::fromUtf8("recvTextEdit_17"));
+        recvTextEdit_17->setMaximumSize(QSize(16777215, 25));
+
+        gridLayout->addWidget(recvTextEdit_17, 13, 1, 1, 1);
 
         recvTextEdit_10 = new QTextEdit(formLayoutWidget);
         recvTextEdit_10->setObjectName(QString::fromUtf8("recvTextEdit_10"));
         recvTextEdit_10->setMaximumSize(QSize(16777215, 25));
 
-        gridLayout->addWidget(recvTextEdit_10, 9, 1, 1, 1);
+        gridLayout->addWidget(recvTextEdit_10, 16, 1, 1, 1);
+
+        sendButton_18 = new QPushButton(formLayoutWidget);
+        sendButton_18->setObjectName(QString::fromUtf8("sendButton_18"));
+
+        gridLayout->addWidget(sendButton_18, 19, 0, 1, 3);
+
+        recvTextEdit_14 = new QTextEdit(formLayoutWidget);
+        recvTextEdit_14->setObjectName(QString::fromUtf8("recvTextEdit_14"));
+        recvTextEdit_14->setMaximumSize(QSize(16777215, 25));
+
+        gridLayout->addWidget(recvTextEdit_14, 12, 1, 1, 1);
+
+        sendButton_14 = new QPushButton(formLayoutWidget);
+        sendButton_14->setObjectName(QString::fromUtf8("sendButton_14"));
+
+        gridLayout->addWidget(sendButton_14, 8, 2, 1, 1);
+
+        recvTextEdit_22 = new QTextEdit(formLayoutWidget);
+        recvTextEdit_22->setObjectName(QString::fromUtf8("recvTextEdit_22"));
+        recvTextEdit_22->setMaximumSize(QSize(16777215, 25));
+
+        gridLayout->addWidget(recvTextEdit_22, 4, 1, 1, 1);
+
+        label_22 = new QLabel(formLayoutWidget);
+        label_22->setObjectName(QString::fromUtf8("label_22"));
+
+        gridLayout->addWidget(label_22, 3, 0, 1, 1);
+
+        sendButton_17 = new QPushButton(formLayoutWidget);
+        sendButton_17->setObjectName(QString::fromUtf8("sendButton_17"));
+
+        gridLayout->addWidget(sendButton_17, 18, 2, 1, 1);
 
         recvTextEdit_11 = new QTextEdit(formLayoutWidget);
         recvTextEdit_11->setObjectName(QString::fromUtf8("recvTextEdit_11"));
         recvTextEdit_11->setMaximumSize(QSize(16777215, 25));
 
-        gridLayout->addWidget(recvTextEdit_11, 11, 1, 1, 1);
+        gridLayout->addWidget(recvTextEdit_11, 18, 1, 1, 1);
 
-        label_20 = new QLabel(formLayoutWidget);
-        label_20->setObjectName(QString::fromUtf8("label_20"));
+        sendButton_5 = new QPushButton(formLayoutWidget);
+        sendButton_5->setObjectName(QString::fromUtf8("sendButton_5"));
 
-        gridLayout->addWidget(label_20, 11, 0, 1, 1);
+        gridLayout->addWidget(sendButton_5, 8, 1, 1, 1);
 
-        pushButton = new QPushButton(formLayoutWidget);
-        pushButton->setObjectName(QString::fromUtf8("pushButton"));
+        label_15 = new QLabel(formLayoutWidget);
+        label_15->setObjectName(QString::fromUtf8("label_15"));
 
-        gridLayout->addWidget(pushButton, 4, 2, 1, 1);
+        gridLayout->addWidget(label_15, 13, 0, 1, 1);
 
         sendButton_6 = new QPushButton(formLayoutWidget);
         sendButton_6->setObjectName(QString::fromUtf8("sendButton_6"));
 
-        gridLayout->addWidget(sendButton_6, 8, 0, 1, 1);
+        gridLayout->addWidget(sendButton_6, 15, 0, 1, 1);
 
-        sendButton_12 = new QPushButton(formLayoutWidget);
-        buttonGroup->addButton(sendButton_12);
-        sendButton_12->setObjectName(QString::fromUtf8("sendButton_12"));
+        sendButton_11 = new QPushButton(formLayoutWidget);
+        sendButton_11->setObjectName(QString::fromUtf8("sendButton_11"));
 
-        gridLayout->addWidget(sendButton_12, 1, 0, 1, 1);
+        gridLayout->addWidget(sendButton_11, 15, 1, 1, 1);
 
-        sendButton_3 = new QPushButton(formLayoutWidget);
-        buttonGroup->addButton(sendButton_3);
-        sendButton_3->setObjectName(QString::fromUtf8("sendButton_3"));
+        sendButton_21 = new QPushButton(formLayoutWidget);
+        sendButton_21->setObjectName(QString::fromUtf8("sendButton_21"));
 
-        gridLayout->addWidget(sendButton_3, 0, 1, 1, 1);
+        gridLayout->addWidget(sendButton_21, 0, 1, 1, 1);
+
+        label_24 = new QLabel(formLayoutWidget);
+        label_24->setObjectName(QString::fromUtf8("label_24"));
+
+        gridLayout->addWidget(label_24, 5, 0, 1, 1);
+
+        pushButton = new QPushButton(formLayoutWidget);
+        pushButton->setObjectName(QString::fromUtf8("pushButton"));
+
+        gridLayout->addWidget(pushButton, 11, 2, 1, 1);
+
+        pushButton_3 = new QPushButton(formLayoutWidget);
+        pushButton_3->setObjectName(QString::fromUtf8("pushButton_3"));
+
+        gridLayout->addWidget(pushButton_3, 13, 2, 1, 1);
+
+        label_23 = new QLabel(formLayoutWidget);
+        label_23->setObjectName(QString::fromUtf8("label_23"));
+
+        gridLayout->addWidget(label_23, 4, 0, 1, 1);
 
         recvTextEdit_13 = new QTextEdit(formLayoutWidget);
         recvTextEdit_13->setObjectName(QString::fromUtf8("recvTextEdit_13"));
         recvTextEdit_13->setMaximumSize(QSize(16777215, 25));
 
-        gridLayout->addWidget(recvTextEdit_13, 4, 1, 1, 1);
+        gridLayout->addWidget(recvTextEdit_13, 11, 1, 1, 1);
 
-        label_19 = new QLabel(formLayoutWidget);
-        label_19->setObjectName(QString::fromUtf8("label_19"));
+        label_20 = new QLabel(formLayoutWidget);
+        label_20->setObjectName(QString::fromUtf8("label_20"));
 
-        gridLayout->addWidget(label_19, 10, 0, 1, 1);
+        gridLayout->addWidget(label_20, 18, 0, 1, 1);
 
-        sendButton_18 = new QPushButton(formLayoutWidget);
-        sendButton_18->setObjectName(QString::fromUtf8("sendButton_18"));
+        sendButton_13 = new QPushButton(formLayoutWidget);
+        sendButton_13->setObjectName(QString::fromUtf8("sendButton_13"));
 
-        gridLayout->addWidget(sendButton_18, 12, 0, 1, 3);
+        gridLayout->addWidget(sendButton_13, 9, 0, 1, 1);
+
+        pushButton_2 = new QPushButton(formLayoutWidget);
+        pushButton_2->setObjectName(QString::fromUtf8("pushButton_2"));
+
+        gridLayout->addWidget(pushButton_2, 12, 2, 1, 1);
+
+        label_18 = new QLabel(formLayoutWidget);
+        label_18->setObjectName(QString::fromUtf8("label_18"));
+
+        gridLayout->addWidget(label_18, 16, 0, 1, 1);
+
+        sendButton_23 = new QPushButton(formLayoutWidget);
+        sendButton_23->setObjectName(QString::fromUtf8("sendButton_23"));
+
+        gridLayout->addWidget(sendButton_23, 1, 0, 1, 1);
+
+        label_10 = new QLabel(formLayoutWidget);
+        label_10->setObjectName(QString::fromUtf8("label_10"));
+
+        gridLayout->addWidget(label_10, 11, 0, 1, 1);
+
+        sendButton_22 = new QPushButton(formLayoutWidget);
+        sendButton_22->setObjectName(QString::fromUtf8("sendButton_22"));
+
+        gridLayout->addWidget(sendButton_22, 0, 2, 1, 1);
+
+        sendButton_3 = new QPushButton(formLayoutWidget);
+        buttonGroup->addButton(sendButton_3);
+        sendButton_3->setObjectName(QString::fromUtf8("sendButton_3"));
+
+        gridLayout->addWidget(sendButton_3, 1, 1, 1, 1);
+
+        pushButton_4 = new QPushButton(formLayoutWidget);
+        pushButton_4->setObjectName(QString::fromUtf8("pushButton_4"));
+
+        gridLayout->addWidget(pushButton_4, 14, 2, 1, 1);
+
+        label_26 = new QLabel(formLayoutWidget);
+        label_26->setObjectName(QString::fromUtf8("label_26"));
+
+        gridLayout->addWidget(label_26, 7, 0, 1, 1);
+
+        recvTextEdit_25 = new QTextEdit(formLayoutWidget);
+        recvTextEdit_25->setObjectName(QString::fromUtf8("recvTextEdit_25"));
+        recvTextEdit_25->setMaximumSize(QSize(16777215, 25));
+
+        gridLayout->addWidget(recvTextEdit_25, 7, 1, 1, 1);
 
         gridLayoutWidget = new QWidget(Widget);
         gridLayoutWidget->setObjectName(QString::fromUtf8("gridLayoutWidget"));
@@ -524,7 +607,7 @@ public:
 
         gridLayoutWidget_2 = new QWidget(Widget);
         gridLayoutWidget_2->setObjectName(QString::fromUtf8("gridLayoutWidget_2"));
-        gridLayoutWidget_2->setGeometry(QRect(680, 40, 171, 138));
+        gridLayoutWidget_2->setGeometry(QRect(700, 40, 171, 138));
         dataread_2 = new QGridLayout(gridLayoutWidget_2);
         dataread_2->setSpacing(6);
         dataread_2->setContentsMargins(11, 11, 11, 11);
@@ -580,7 +663,7 @@ public:
 
         gridLayoutWidget_3 = new QWidget(Widget);
         gridLayoutWidget_3->setObjectName(QString::fromUtf8("gridLayoutWidget_3"));
-        gridLayoutWidget_3->setGeometry(QRect(390, 410, 261, 56));
+        gridLayoutWidget_3->setGeometry(QRect(700, 190, 171, 71));
         dataread_3 = new QGridLayout(gridLayoutWidget_3);
         dataread_3->setSpacing(6);
         dataread_3->setContentsMargins(11, 11, 11, 11);
@@ -639,31 +722,39 @@ public:
         checkBox_6->setText(QApplication::translate("Widget", "\345\234\237\345\243\244\351\222\276", nullptr));
         checkBox_2->setText(QApplication::translate("Widget", "\345\234\237\345\243\244\346\271\277\345\272\246", nullptr));
         checkBox_7->setText(QApplication::translate("Widget", "\345\234\237\345\243\244PH", nullptr));
-        sendButton_17->setText(QApplication::translate("Widget", "SET", nullptr));
-        label_14->setText(QApplication::translate("Widget", "\347\224\265\345\257\274\347\216\2071500 AD", nullptr));
         sendButton_16->setText(QApplication::translate("Widget", "SET", nullptr));
-        label_18->setText(QApplication::translate("Widget", "PH\347\242\261\346\200\247 AD", nullptr));
-        sendButton_14->setText(QApplication::translate("Widget", "\347\224\265\345\257\274\347\216\2071500", nullptr));
-        pushButton_3->setText(QApplication::translate("Widget", "SET", nullptr));
-        sendButton_5->setText(QApplication::translate("Widget", "\347\224\265\345\257\274\347\216\207500", nullptr));
-        sendButton_4->setText(QApplication::translate("Widget", "\347\224\265\345\257\274\347\216\2078000", nullptr));
-        sendButton_10->setText(QApplication::translate("Widget", "PH\351\205\270\346\200\2474.00", nullptr));
-        sendButton_15->setText(QApplication::translate("Widget", "SET", nullptr));
-        pushButton_4->setText(QApplication::translate("Widget", "SET", nullptr));
-        sendButton_13->setText(QApplication::translate("Widget", "\347\224\265\345\257\274\347\216\2073000", nullptr));
-        label_10->setText(QApplication::translate("Widget", "\347\224\265\345\257\274\347\216\207500 AD", nullptr));
-        sendButton_11->setText(QApplication::translate("Widget", "PH\344\270\255\346\200\2476.86", nullptr));
-        pushButton_2->setText(QApplication::translate("Widget", "SET", nullptr));
-        label_15->setText(QApplication::translate("Widget", "\347\224\265\345\257\274\347\216\2073000 AD", nullptr));
-        sendButton_2->setText(QApplication::translate("Widget", "\346\271\277\345\272\246\351\233\266\347\202\271", nullptr));
-        label_17->setText(QApplication::translate("Widget", "\347\224\265\345\257\274\347\216\2078000 AD", nullptr));
-        label_20->setText(QApplication::translate("Widget", "PH\351\205\270\346\200\247 AD", nullptr));
-        pushButton->setText(QApplication::translate("Widget", "SET", nullptr));
-        sendButton_6->setText(QApplication::translate("Widget", "PH\347\242\261\346\200\2479.18", nullptr));
         sendButton_12->setText(QApplication::translate("Widget", "\347\224\265\345\257\274\347\216\207\351\233\266\347\202\271", nullptr));
-        sendButton_3->setText(QApplication::translate("Widget", "\346\271\277\345\272\246\351\241\266\347\202\271", nullptr));
+        sendButton_15->setText(QApplication::translate("Widget", "SET", nullptr));
+        sendButton_4->setText(QApplication::translate("Widget", "\347\224\265\345\257\274\347\216\2078000", nullptr));
+        sendButton_2->setText(QApplication::translate("Widget", "\346\271\277\345\272\246\351\233\266\347\202\271", nullptr));
+        label_25->setText(QApplication::translate("Widget", "\346\271\277\345\272\24680% AD", nullptr));
+        label_17->setText(QApplication::translate("Widget", "\347\224\265\345\257\274\347\216\2078000 AD", nullptr));
         label_19->setText(QApplication::translate("Widget", "PH\344\270\255\346\200\247 AD", nullptr));
+        label_14->setText(QApplication::translate("Widget", "\347\224\265\345\257\274\347\216\2071500 AD", nullptr));
+        sendButton_10->setText(QApplication::translate("Widget", "PH\351\205\270\346\200\2474.00", nullptr));
         sendButton_18->setText(QApplication::translate("Widget", "\344\270\200\351\224\256\350\216\267\345\217\226\345\275\223\345\211\215\350\256\276\347\275\256\345\200\274", nullptr));
+        sendButton_14->setText(QApplication::translate("Widget", "\347\224\265\345\257\274\347\216\2071500", nullptr));
+        label_22->setText(QApplication::translate("Widget", "\346\271\277\345\272\246\351\233\266\347\202\271 AD", nullptr));
+        sendButton_17->setText(QApplication::translate("Widget", "SET", nullptr));
+        sendButton_5->setText(QApplication::translate("Widget", "\347\224\265\345\257\274\347\216\207500", nullptr));
+        label_15->setText(QApplication::translate("Widget", "\347\224\265\345\257\274\347\216\2073000 AD", nullptr));
+        sendButton_6->setText(QApplication::translate("Widget", "PH\347\242\261\346\200\2479.18", nullptr));
+        sendButton_11->setText(QApplication::translate("Widget", "PH\344\270\255\346\200\2476.86", nullptr));
+        sendButton_21->setText(QApplication::translate("Widget", "\346\271\277\345\272\24620%", nullptr));
+        label_24->setText(QApplication::translate("Widget", "\346\271\277\345\272\24650% AD", nullptr));
+        pushButton->setText(QApplication::translate("Widget", "SET", nullptr));
+        pushButton_3->setText(QApplication::translate("Widget", "SET", nullptr));
+        label_23->setText(QApplication::translate("Widget", "\346\271\277\345\272\24620% AD", nullptr));
+        label_20->setText(QApplication::translate("Widget", "PH\351\205\270\346\200\247 AD", nullptr));
+        sendButton_13->setText(QApplication::translate("Widget", "\347\224\265\345\257\274\347\216\2073000", nullptr));
+        pushButton_2->setText(QApplication::translate("Widget", "SET", nullptr));
+        label_18->setText(QApplication::translate("Widget", "PH\347\242\261\346\200\247 AD", nullptr));
+        sendButton_23->setText(QApplication::translate("Widget", "\346\271\277\345\272\24680%", nullptr));
+        label_10->setText(QApplication::translate("Widget", "\347\224\265\345\257\274\347\216\207500 AD", nullptr));
+        sendButton_22->setText(QApplication::translate("Widget", "\346\271\277\345\272\24650%", nullptr));
+        sendButton_3->setText(QApplication::translate("Widget", "\346\271\277\345\272\246\351\241\266\347\202\271", nullptr));
+        pushButton_4->setText(QApplication::translate("Widget", "SET", nullptr));
+        label_26->setText(QApplication::translate("Widget", "\346\271\277\345\272\246\351\241\266\347\202\271 AD", nullptr));
         label_5->setText(QApplication::translate("Widget", "\345\234\237\345\243\244\347\243\267", nullptr));
         label_3->setText(QApplication::translate("Widget", "\345\234\237\345\243\244\347\224\265\345\257\274\347\216\207", nullptr));
         label_2->setText(QApplication::translate("Widget", "\345\234\237\345\243\244\346\271\277\345\272\246", nullptr));

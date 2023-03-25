@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>881</width>
-    <height>466</height>
+    <width>930</width>
+    <height>598</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -241,159 +241,38 @@
      <x>390</x>
      <y>40</y>
      <width>261</width>
-     <height>358</height>
+     <height>542</height>
     </rect>
    </property>
    <layout class="QGridLayout" name="gridLayout">
-    <item row="11" column="2">
-     <widget class="QPushButton" name="sendButton_17">
-      <property name="text">
-       <string>SET</string>
-      </property>
-     </widget>
-    </item>
-    <item row="5" column="0">
-     <widget class="QLabel" name="label_14">
-      <property name="text">
-       <string>电导率1500 AD</string>
-      </property>
-     </widget>
-    </item>
-    <item row="10" column="2">
+    <item row="17" column="2">
      <widget class="QPushButton" name="sendButton_16">
       <property name="text">
        <string>SET</string>
       </property>
      </widget>
     </item>
-    <item row="9" column="0">
-     <widget class="QLabel" name="label_18">
+    <item row="8" column="0">
+     <widget class="QPushButton" name="sendButton_12">
       <property name="text">
-       <string>PH碱性 AD</string>
+       <string>电导率零点</string>
       </property>
+      <attribute name="buttonGroup">
+       <string notr="true">buttonGroup</string>
+      </attribute>
      </widget>
     </item>
-    <item row="1" column="2">
-     <widget class="QPushButton" name="sendButton_14">
-      <property name="text">
-       <string>电导率1500</string>
-      </property>
-     </widget>
-    </item>
-    <item row="6" column="1">
-     <widget class="QTextEdit" name="recvTextEdit_17">
-      <property name="maximumSize">
-       <size>
-        <width>16777215</width>
-        <height>25</height>
-       </size>
-      </property>
-     </widget>
-    </item>
-    <item row="6" column="2">
-     <widget class="QPushButton" name="pushButton_3">
-      <property name="text">
-       <string>SET</string>
-      </property>
-     </widget>
-    </item>
-    <item row="1" column="1">
-     <widget class="QPushButton" name="sendButton_5">
-      <property name="text">
-       <string>电导率500</string>
-      </property>
-     </widget>
-    </item>
-    <item row="10" column="1">
-     <widget class="QTextEdit" name="recvTextEdit_12">
-      <property name="maximumSize">
-       <size>
-        <width>16777215</width>
-        <height>25</height>
-       </size>
-      </property>
-     </widget>
-    </item>
-    <item row="2" column="1">
-     <widget class="QPushButton" name="sendButton_4">
-      <property name="text">
-       <string>电导率8000</string>
-      </property>
-     </widget>
-    </item>
-    <item row="8" column="2">
-     <widget class="QPushButton" name="sendButton_10">
-      <property name="text">
-       <string>PH酸性4.00</string>
-      </property>
-     </widget>
-    </item>
-    <item row="9" column="2">
+    <item row="16" column="2">
      <widget class="QPushButton" name="sendButton_15">
       <property name="text">
        <string>SET</string>
       </property>
      </widget>
     </item>
-    <item row="7" column="1">
-     <widget class="QTextEdit" name="recvTextEdit_9">
-      <property name="maximumSize">
-       <size>
-        <width>16777215</width>
-        <height>25</height>
-       </size>
-      </property>
-     </widget>
-    </item>
-    <item row="7" column="2">
-     <widget class="QPushButton" name="pushButton_4">
+    <item row="9" column="1">
+     <widget class="QPushButton" name="sendButton_4">
       <property name="text">
-       <string>SET</string>
-      </property>
-     </widget>
-    </item>
-    <item row="5" column="1">
-     <widget class="QTextEdit" name="recvTextEdit_14">
-      <property name="maximumSize">
-       <size>
-        <width>16777215</width>
-        <height>25</height>
-       </size>
-      </property>
-     </widget>
-    </item>
-    <item row="2" column="0">
-     <widget class="QPushButton" name="sendButton_13">
-      <property name="text">
-       <string>电导率3000</string>
-      </property>
-     </widget>
-    </item>
-    <item row="4" column="0">
-     <widget class="QLabel" name="label_10">
-      <property name="text">
-       <string>电导率500 AD</string>
-      </property>
-     </widget>
-    </item>
-    <item row="8" column="1">
-     <widget class="QPushButton" name="sendButton_11">
-      <property name="text">
-       <string>PH中性6.86</string>
-      </property>
-     </widget>
-    </item>
-    <item row="5" column="2">
-     <widget class="QPushButton" name="pushButton_2">
-      <property name="text">
-       <string>SET</string>
-      </property>
-     </widget>
-    </item>
-    <item row="6" column="0">
-     <widget class="QLabel" name="label_15">
-      <property name="text">
-       <string>电导率3000 AD</string>
+       <string>电导率8000</string>
       </property>
      </widget>
     </item>
@@ -407,14 +286,102 @@
       </attribute>
      </widget>
     </item>
-    <item row="7" column="0">
+    <item row="6" column="1">
+     <widget class="QTextEdit" name="recvTextEdit_24">
+      <property name="maximumSize">
+       <size>
+        <width>16777215</width>
+        <height>25</height>
+       </size>
+      </property>
+     </widget>
+    </item>
+    <item row="6" column="0">
+     <widget class="QLabel" name="label_25">
+      <property name="text">
+       <string>湿度80% AD</string>
+      </property>
+     </widget>
+    </item>
+    <item row="5" column="1">
+     <widget class="QTextEdit" name="recvTextEdit_23">
+      <property name="maximumSize">
+       <size>
+        <width>16777215</width>
+        <height>25</height>
+       </size>
+      </property>
+     </widget>
+    </item>
+    <item row="14" column="0">
      <widget class="QLabel" name="label_17">
       <property name="text">
        <string>电导率8000 AD</string>
       </property>
      </widget>
     </item>
-    <item row="9" column="1">
+    <item row="17" column="1">
+     <widget class="QTextEdit" name="recvTextEdit_12">
+      <property name="maximumSize">
+       <size>
+        <width>16777215</width>
+        <height>25</height>
+       </size>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="1">
+     <widget class="QTextEdit" name="recvTextEdit_21">
+      <property name="maximumSize">
+       <size>
+        <width>16777215</width>
+        <height>25</height>
+       </size>
+      </property>
+     </widget>
+    </item>
+    <item row="17" column="0">
+     <widget class="QLabel" name="label_19">
+      <property name="text">
+       <string>PH中性 AD</string>
+      </property>
+     </widget>
+    </item>
+    <item row="14" column="1">
+     <widget class="QTextEdit" name="recvTextEdit_9">
+      <property name="maximumSize">
+       <size>
+        <width>16777215</width>
+        <height>25</height>
+       </size>
+      </property>
+     </widget>
+    </item>
+    <item row="12" column="0">
+     <widget class="QLabel" name="label_14">
+      <property name="text">
+       <string>电导率1500 AD</string>
+      </property>
+     </widget>
+    </item>
+    <item row="15" column="2">
+     <widget class="QPushButton" name="sendButton_10">
+      <property name="text">
+       <string>PH酸性4.00</string>
+      </property>
+     </widget>
+    </item>
+    <item row="13" column="1">
+     <widget class="QTextEdit" name="recvTextEdit_17">
+      <property name="maximumSize">
+       <size>
+        <width>16777215</width>
+        <height>25</height>
+       </size>
+      </property>
+     </widget>
+    </item>
+    <item row="16" column="1">
      <widget class="QTextEdit" name="recvTextEdit_10">
       <property name="maximumSize">
        <size>
@@ -424,7 +391,55 @@
       </property>
      </widget>
     </item>
-    <item row="11" column="1">
+    <item row="19" column="0" colspan="3">
+     <widget class="QPushButton" name="sendButton_18">
+      <property name="text">
+       <string>一键获取当前设置值</string>
+      </property>
+     </widget>
+    </item>
+    <item row="12" column="1">
+     <widget class="QTextEdit" name="recvTextEdit_14">
+      <property name="maximumSize">
+       <size>
+        <width>16777215</width>
+        <height>25</height>
+       </size>
+      </property>
+     </widget>
+    </item>
+    <item row="8" column="2">
+     <widget class="QPushButton" name="sendButton_14">
+      <property name="text">
+       <string>电导率1500</string>
+      </property>
+     </widget>
+    </item>
+    <item row="4" column="1">
+     <widget class="QTextEdit" name="recvTextEdit_22">
+      <property name="maximumSize">
+       <size>
+        <width>16777215</width>
+        <height>25</height>
+       </size>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="0">
+     <widget class="QLabel" name="label_22">
+      <property name="text">
+       <string>湿度零点 AD</string>
+      </property>
+     </widget>
+    </item>
+    <item row="18" column="2">
+     <widget class="QPushButton" name="sendButton_17">
+      <property name="text">
+       <string>SET</string>
+      </property>
+     </widget>
+    </item>
+    <item row="18" column="1">
      <widget class="QTextEdit" name="recvTextEdit_11">
       <property name="maximumSize">
        <size>
@@ -434,48 +449,70 @@
       </property>
      </widget>
     </item>
-    <item row="11" column="0">
-     <widget class="QLabel" name="label_20">
+    <item row="8" column="1">
+     <widget class="QPushButton" name="sendButton_5">
       <property name="text">
-       <string>PH酸性 AD</string>
+       <string>电导率500</string>
       </property>
      </widget>
     </item>
-    <item row="4" column="2">
-     <widget class="QPushButton" name="pushButton">
+    <item row="13" column="0">
+     <widget class="QLabel" name="label_15">
       <property name="text">
-       <string>SET</string>
+       <string>电导率3000 AD</string>
       </property>
      </widget>
     </item>
-    <item row="8" column="0">
+    <item row="15" column="0">
      <widget class="QPushButton" name="sendButton_6">
       <property name="text">
        <string>PH碱性9.18</string>
       </property>
      </widget>
     </item>
-    <item row="1" column="0">
-     <widget class="QPushButton" name="sendButton_12">
+    <item row="15" column="1">
+     <widget class="QPushButton" name="sendButton_11">
       <property name="text">
-       <string>电导率零点</string>
+       <string>PH中性6.86</string>
       </property>
-      <attribute name="buttonGroup">
-       <string notr="true">buttonGroup</string>
-      </attribute>
      </widget>
     </item>
     <item row="0" column="1">
-     <widget class="QPushButton" name="sendButton_3">
+     <widget class="QPushButton" name="sendButton_21">
       <property name="text">
-       <string>湿度顶点</string>
+       <string>湿度20%</string>
       </property>
-      <attribute name="buttonGroup">
-       <string notr="true">buttonGroup</string>
-      </attribute>
      </widget>
     </item>
-    <item row="4" column="1">
+    <item row="5" column="0">
+     <widget class="QLabel" name="label_24">
+      <property name="text">
+       <string>湿度50% AD</string>
+      </property>
+     </widget>
+    </item>
+    <item row="11" column="2">
+     <widget class="QPushButton" name="pushButton">
+      <property name="text">
+       <string>SET</string>
+      </property>
+     </widget>
+    </item>
+    <item row="13" column="2">
+     <widget class="QPushButton" name="pushButton_3">
+      <property name="text">
+       <string>SET</string>
+      </property>
+     </widget>
+    </item>
+    <item row="4" column="0">
+     <widget class="QLabel" name="label_23">
+      <property name="text">
+       <string>湿度20% AD</string>
+      </property>
+     </widget>
+    </item>
+    <item row="11" column="1">
      <widget class="QTextEdit" name="recvTextEdit_13">
       <property name="maximumSize">
        <size>
@@ -485,17 +522,86 @@
       </property>
      </widget>
     </item>
-    <item row="10" column="0">
-     <widget class="QLabel" name="label_19">
+    <item row="18" column="0">
+     <widget class="QLabel" name="label_20">
       <property name="text">
-       <string>PH中性 AD</string>
+       <string>PH酸性 AD</string>
       </property>
      </widget>
     </item>
-    <item row="12" column="0" colspan="3">
-     <widget class="QPushButton" name="sendButton_18">
+    <item row="9" column="0">
+     <widget class="QPushButton" name="sendButton_13">
       <property name="text">
-       <string>一键获取当前设置值</string>
+       <string>电导率3000</string>
+      </property>
+     </widget>
+    </item>
+    <item row="12" column="2">
+     <widget class="QPushButton" name="pushButton_2">
+      <property name="text">
+       <string>SET</string>
+      </property>
+     </widget>
+    </item>
+    <item row="16" column="0">
+     <widget class="QLabel" name="label_18">
+      <property name="text">
+       <string>PH碱性 AD</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="0">
+     <widget class="QPushButton" name="sendButton_23">
+      <property name="text">
+       <string>湿度80%</string>
+      </property>
+     </widget>
+    </item>
+    <item row="11" column="0">
+     <widget class="QLabel" name="label_10">
+      <property name="text">
+       <string>电导率500 AD</string>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="2">
+     <widget class="QPushButton" name="sendButton_22">
+      <property name="text">
+       <string>湿度50%</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="1">
+     <widget class="QPushButton" name="sendButton_3">
+      <property name="text">
+       <string>湿度顶点</string>
+      </property>
+      <attribute name="buttonGroup">
+       <string notr="true">buttonGroup</string>
+      </attribute>
+     </widget>
+    </item>
+    <item row="14" column="2">
+     <widget class="QPushButton" name="pushButton_4">
+      <property name="text">
+       <string>SET</string>
+      </property>
+     </widget>
+    </item>
+    <item row="7" column="0">
+     <widget class="QLabel" name="label_26">
+      <property name="text">
+       <string>湿度顶点 AD</string>
+      </property>
+     </widget>
+    </item>
+    <item row="7" column="1">
+     <widget class="QTextEdit" name="recvTextEdit_25">
+      <property name="maximumSize">
+       <size>
+        <width>16777215</width>
+        <height>25</height>
+       </size>
       </property>
      </widget>
     </item>
@@ -656,7 +762,7 @@
   <widget class="QWidget" name="gridLayoutWidget_2">
    <property name="geometry">
     <rect>
-     <x>680</x>
+     <x>700</x>
      <y>40</y>
      <width>171</width>
      <height>138</height>
@@ -748,10 +854,10 @@
   <widget class="QWidget" name="gridLayoutWidget_3">
    <property name="geometry">
     <rect>
-     <x>390</x>
-     <y>410</y>
-     <width>261</width>
-     <height>56</height>
+     <x>700</x>
+     <y>190</y>
+     <width>171</width>
+     <height>71</height>
     </rect>
    </property>
    <layout class="QGridLayout" name="dataread_3">

@@ -87,6 +87,12 @@ private slots:
 
     void on_sendButton_20_clicked();
 
+    void on_sendButton_21_clicked();
+
+    void on_sendButton_22_clicked();
+
+    void on_sendButton_23_clicked();
+
 private:
     Ui::Widget *ui;
 
